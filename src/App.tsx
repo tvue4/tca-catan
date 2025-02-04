@@ -11,7 +11,7 @@ function App() {
           TCA Catan
         </h1>
         <button
-          className='btn'
+          className='btn btn-secondary btn-soft btn-xl'
         >
           Play Five Crowns
         </button>
