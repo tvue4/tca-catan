@@ -1,7 +1,20 @@
 import './App.css'
 
-function App() {
+const App = (
+  // props: any
 
+  // Destructuring...
+  {
+    timestamp,
+    magicNumber
+  }
+) => {
+
+  console.log(
+    "App Component Func Called ! ! !"
+    // , typeof(props)
+    // , props
+  );
   return (
     <>
       <div>
@@ -10,8 +23,11 @@ function App() {
         >
           TCA Catan
         </h1>
+        <p>
+          { timestamp } - { magicNumber }
+        </p>
         <button
-          className='btn btn-secondary btn-soft btn-xl'
+          className='btn btn-secondary btn-active btn-xl'
         >
           Play Five Crowns
         </button>
