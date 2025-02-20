@@ -13,7 +13,7 @@ export const Play = () => {
             </h3>
             <button className="btn btn-active btn-secondary btn-xl mt-4"
                 onClick={
-                    () => nav(1)
+                    () => nav(-2)
                 }
             >
                 Done
