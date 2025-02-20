@@ -1,4 +1,9 @@
+import { useNavigate } from "react-router";
+
 export const Home = () => {
+
+    // Use a react hook for button navigation
+    const nav = useNavigate();
 
     return (
         <>
@@ -7,7 +12,11 @@ export const Home = () => {
             >
                 Home
             </h3>
-            <button className="btn btn-active btn-secondary btn-xl mt-4">
+            <button className="btn btn-active btn-secondary btn-xl mt-4"
+                onClick={
+                    () => nav("/setup")
+                }
+            >
                 Play Catan
             </button>
         </>

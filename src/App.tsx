@@ -33,8 +33,7 @@ const App = (
               path='/setup'
               element={
                 <Setup />
-            }
-              
+              }
             />
             <Route 
               path='/play'
