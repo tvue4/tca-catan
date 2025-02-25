@@ -17,7 +17,7 @@ const App = (
     "App Component Func Called ! ! !"
   );
 
-  const [totalGameCount, setTotalGameCount] = useState(6);
+  const [totalGameCount, setTotalGameCount] = useState(0);
   return (
     <>
       <div

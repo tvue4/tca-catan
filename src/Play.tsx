@@ -13,7 +13,7 @@ export const Play: React.FC<PlayProps> = ({
 
     const nav = useNavigate();
 
-    const [turnNumber, setTurnNumber] = useState(6)
+    const [turnNumber, setTurnNumber] = useState(0)
 
     return (
         <>
