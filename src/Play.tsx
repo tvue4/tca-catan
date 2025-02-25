@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 
-interface SetupProps {
+interface PlayProps {
     totalGameCount: number;
 }
 
-export const Play: React.FC<SetupProps> = ({
+export const Play: React.FC<PlayProps> = ({
     totalGameCount: fooBarCat
 }) => {
 
