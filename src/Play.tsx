@@ -1,7 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 
-export const Play = () => {
+interface SetupProps {
+    totalGameCount: number;
+}
+
+export const Play: React.FC<SetupProps> = ({
+    totalGameCount: fooBarCat
+}) => {
 
     const nav = useNavigate();
 
@@ -12,7 +18,7 @@ export const Play = () => {
             <h3
                 className='text-2x1 font-bold'
             >
-                Play (0 games played)
+                Play ({fooBarCat} games played)
             </h3>
             <h4 
                 className="text-lg font-semibold"
