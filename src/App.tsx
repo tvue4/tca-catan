@@ -8,7 +8,55 @@ import { Home } from './Home'
 import { Setup } from './Setup'
 import { Play } from './Play'
 import { useState } from 'react';
+import { GameResult } from './GameResults';
 
+const dummyGameResults: GameResult[] = [
+  {
+      winner: "Hermione"
+      , players: [
+          "Hermione"
+          , "Harry"
+          , "Ron"
+      ]
+      
+  }
+  , {
+      winner: "Ron"
+      , players: [
+          "Hermione"
+          , "Ron"
+      ]
+  }
+  , {
+      winner: "Larry"
+      , players: [
+          "Larry"
+          , "Curly"
+          , "Moe"
+      ]
+  }
+  , {
+      winner: "Harry"
+      , players: [
+          "Curly"
+          , "Harry"
+      ]
+  }
+  , {
+      winner: "Ron"
+      , players: [
+          "Ron"
+          , "Voldemort"
+      ]
+  }
+  , {
+      winner: "Voldemort"
+      , players: [
+          "Ron"
+          , "Voldemort"
+      ]
+  }
+];
 
 const App = (
 ) => {
