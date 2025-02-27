@@ -32,7 +32,7 @@ export const Home: React.FC<HomeProps> = ({
             </button>
 
             <div
-                className="card w-96 bg-base-100 card-md shadow-lg mt-4"
+                className="card w-full bg-base-100 card-md shadow-lg mt-4"
             >
                 <div
                     className="card-body"
