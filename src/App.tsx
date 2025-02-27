@@ -65,7 +65,20 @@ const App = (
     "App Component Func Called ! ! !"
   );
 
+  // 
+  // Hooks...
+  // 
   const [gameResults, setGameResults] = useState(dummyGameResults);
+
+  // 
+  // Other (not hooks)
+  // 
+  const addNewGameResult = (addNewGameResult: GameResult) => setGameResults(
+    [
+      ...gameResults
+      , addNewGameResult
+    ]
+  );
 
   return (
     <>
@@ -99,6 +112,7 @@ const App = (
               element={
                 <Play 
                  totalGameCount={gameResults.length}
+                 addNewGameResult={addNewGameResult}
                 />
               }
             />
