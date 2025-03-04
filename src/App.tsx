@@ -90,7 +90,7 @@ const App = (
             Catan
           </h1>
         </div>
-        <div className="p4">
+        <div className="p-4">
           <HashRouter>
               <Routes>
                 <Route 
