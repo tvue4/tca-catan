@@ -4,11 +4,15 @@ import { GameResult } from "./GameResults";
 
 interface PlayProps {
     addNewGameResult: (r: GameResult) => void;
+    setTitle: (t: string) => void;
 }
 
 export const Play: React.FC<PlayProps> = ({
     addNewGameResult
+    , setTitle
 }) => {
+
+    setTitle("Play");
 
     const nav = useNavigate();
 
