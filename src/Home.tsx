@@ -10,9 +10,6 @@ export const Home: React.FC<HomeProps> = ({
     totalGameCount
     , leaderboardData
 }) => {
-
-    console.log(leaderboardData);
-
     // Use a react hook for button navigation
     const nav = useNavigate();
 

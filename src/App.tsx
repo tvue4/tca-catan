@@ -60,11 +60,6 @@ const dummyGameResults: GameResult[] = [
 
 const App = (
 ) => {
-
-  console.log(
-    "App Component Func Called ! ! !"
-  );
-
   // 
   // Hooks...
   // 
