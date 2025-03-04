@@ -79,41 +79,52 @@ const App = (
   return (
     <>
       <div
-        className='p-4'
+        className='p-0'
       >
-        <HashRouter>
-          <Routes>
-            <Route 
-              path='/'
-              element={
-                <Home 
-                  totalGameCount={gameResults.length}
-                  leaderboardData={
-                    getLeaderboard(gameResults)
+        <div 
+          className="navbar bg-base-300 shadow-lg"
+        >
+          <h1 
+            className="text-xl font-bold"
+          >
+            Catan
+          </h1>
+        </div>
+        <div className="p4">
+          <HashRouter>
+              <Routes>
+                <Route 
+                  path='/'
+                  element={
+                    <Home 
+                      totalGameCount={gameResults.length}
+                      leaderboardData={
+                        getLeaderboard(gameResults)
+                      }
+                    />
                   }
                 />
-              }
-            />
 
-            <Route 
-              path='/setup'
-              element={
-                <Setup 
-                  totalGameCount={gameResults.length}
+                <Route 
+                  path='/setup'
+                  element={
+                    <Setup 
+                      totalGameCount={gameResults.length}
+                    />
+                  }
                 />
-              }
-            />
-            <Route 
-              path='/play'
-              element={
-                <Play 
-                 totalGameCount={gameResults.length}
-                 addNewGameResult={addNewGameResult}
+                <Route 
+                  path='/play'
+                  element={
+                    <Play 
+                    totalGameCount={gameResults.length}
+                    addNewGameResult={addNewGameResult}
+                    />
+                  }
                 />
-              }
-            />
-          </Routes>
-        </HashRouter>
+              </Routes>
+            </HashRouter>
+        </div>
       </div>
     </>
   )
