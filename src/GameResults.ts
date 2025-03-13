@@ -4,6 +4,8 @@
 export interface GameResult {
     winner: string;
     players: string[];
+    start: string;
+    end: string;
 }
 
 export interface LeaderboardEntry {
