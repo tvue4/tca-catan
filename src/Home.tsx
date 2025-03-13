@@ -16,10 +16,6 @@ export const Home: React.FC<HomeProps> = ({
     , generalFacts
 }) => {
 
-    console.log(
-        generalFacts
-    );
-    
     useEffect(
         () => setTitle(AppTitle)
         ,[]
@@ -37,6 +33,61 @@ export const Home: React.FC<HomeProps> = ({
             >
                 Play Catan
             </button>
+            <div
+                className="card w-full bg-base-100 card-md shadow-lg mt-4"
+            >
+                <div
+                    className="card-body"
+                >
+                    <h2
+                        className="card-title"
+                    >
+                        General
+                    </h2>
+                            <div 
+                                className="overflow-x-auto"
+                            >
+                                <table 
+                                    className="table"
+                                >
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                Last Played
+                                            </td>
+                                            <th>
+                                                {generalFacts.lastPlayed}
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Total Games
+                                            </td>
+                                            <th>
+                                                {generalFacts.totalGames}
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Shortest Game
+                                            </td>
+                                            <th>
+                                                {generalFacts.shortestGame}
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Longest Game
+                                            </td>
+                                            <th>
+                                                {generalFacts.longestGame}
+                                            </th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                </div>
+            </div>
 
             <div
                 className="card w-full bg-base-100 card-md shadow-lg mt-4"
