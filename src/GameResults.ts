@@ -64,6 +64,15 @@ export const getLeaderboard = (
 
 export const getGeneralFacts = (results: GameResult[]): GeneralFacts => {
 
+    if (results.length === 0) {
+        return {
+            lastPlayed: "n/a"
+            , totalGames: 0
+            , shortestGame: "n/a"
+            , longestGame: "n/a"
+        };
+    }
+
     // Calcs for lastPlayed...
     const now = Date.now();
 
