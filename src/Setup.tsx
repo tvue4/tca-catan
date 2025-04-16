@@ -4,11 +4,13 @@ import { useNavigate } from "react-router";
 interface SetupProps {
     setTitle: (t: string) => void;
     previousPlayers: string[];
+    setCurrentPlayers: (players: string[]) => void;
 }
 
 export const Setup: React.FC<SetupProps> = ({
     setTitle
     , previousPlayers
+    , setCurrentPlayers
 }) => {
     
     useEffect(
@@ -16,7 +18,7 @@ export const Setup: React.FC<SetupProps> = ({
         , []
     );
     
-    const foobarcat = useNavigate();
+    const nav = useNavigate();
 
     const [availablePlayers, setAvailablePlayers] = useState(
         previousPlayers.map(
@@ -31,7 +33,20 @@ export const Setup: React.FC<SetupProps> = ({
         <>
             <button className="btn btn-active btn-secondary btn-xl mt-4"
                 onClick={
-                    () => foobarcat('/play')
+                    () => {
+                        setCurrentPlayers(
+                            availablePlayers
+                            .filter(
+                                x => x.checked
+                            )
+                            .map(
+                                x => (
+                                    x.name
+                                )
+                            )
+                        );
+                        nav('/play')
+                    }
                 }
             >
                 Start Playing

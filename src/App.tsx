@@ -41,6 +41,9 @@ const App = (
   // const [gameResults, setGameResults] = useState<GameResult[]>([]);
 
   const [title, setTitle] = useState(AppTitle);
+
+  const [currentPlayers, setCurrentPlayers] = useState<string[]>([]);
+
   // 
   // Other (not hooks)
   // 
@@ -89,6 +92,7 @@ const App = (
                     <Setup
                       setTitle={setTitle}
                       previousPlayers={getPreviousPlayers(gameResults)}
+                      setCurrentPlayers={setCurrentPlayers}
                     />
                   }
                 />
@@ -98,6 +102,7 @@ const App = (
                     <Play
                       addNewGameResult={addNewGameResult}
                       setTitle={setTitle}
+                      currentPlayers={currentPlayers}
                     />
                   }
                 />
