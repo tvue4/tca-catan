@@ -8,7 +8,7 @@ import { AppTitle, Home } from './Home'
 import { Setup } from './Setup'
 import { Play } from './Play'
 import { useState } from 'react';
-import { GameResult, getGeneralFacts, getLeaderboard } from './GameResults';
+import { GameResult, getGeneralFacts, getLeaderboard, getPreviousPlayers } from './GameResults';
 
 const dummyGameResults: GameResult[] = [
   {
@@ -41,6 +41,9 @@ const App = (
   // const [gameResults, setGameResults] = useState<GameResult[]>([]);
 
   const [title, setTitle] = useState(AppTitle);
+
+  const [currentPlayers, setCurrentPlayers] = useState<string[]>([]);
+
   // 
   // Other (not hooks)
   // 
@@ -88,6 +91,8 @@ const App = (
                   element={
                     <Setup
                       setTitle={setTitle}
+                      previousPlayers={getPreviousPlayers(gameResults)}
+                      setCurrentPlayers={setCurrentPlayers}
                     />
                   }
                 />
@@ -97,6 +102,7 @@ const App = (
                     <Play
                       addNewGameResult={addNewGameResult}
                       setTitle={setTitle}
+                      currentPlayers={currentPlayers}
                     />
                   }
                 />
