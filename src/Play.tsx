@@ -53,18 +53,20 @@ export const Play: React.FC<PlayProps> = ({
                 {
                     currentPlayers.map(
                         x => (
-                            <button className="btn btn-active btn-secondary btn-xl mt-4"
-                            onClick={
-                                () => {
-                                    addNewGameResult({
-                                        winner: x
-                                        , players: currentPlayers
-                                        , start: startTimestamp
-                                        , end: new Date().toISOString()
-                                    });
-                                    nav(-2);
+                            <button 
+                                key={x}
+                                className="btn btn-active btn-secondary btn-xl mt-4"
+                                onClick={
+                                    () => {
+                                        addNewGameResult({
+                                            winner: x
+                                            , players: currentPlayers
+                                            , start: startTimestamp
+                                            , end: new Date().toISOString()
+                                        });
+                                        nav(-2);
+                                    }
                                 }
-                            }
                         >
                             {x} Won
                         </button>
