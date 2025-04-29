@@ -17,6 +17,11 @@ import {
 } from './GameResults';
 import localforage from 'localforage';
 
+import {
+  saveGameToCloud
+  , loadGamesFromCloud
+} from './tca-cloud-api';
+
 const dummyGameResults: GameResult[] = [
   {
       winner: "Hermione"
@@ -58,6 +63,9 @@ const App = (
 
   const [emailOnModal, setEmailOnModal] = useState("");
 
+  const [emailForCloudApi, setEmailForCloudApi] = useState("");
+
+  
   useEffect(
     () => {
 
@@ -96,6 +104,10 @@ const App = (
 
         if (!ignore) {
           setEmailOnModal(savedEmail)
+
+          if(savedEmail.length > 0) {
+            setEmailForCloudApi(savedEmail)
+          }
         }
       };
 
@@ -120,12 +132,28 @@ const App = (
   // 
   // Other (not hooks)
   // 
-  const addNewGameResult = (addNewGameResult: GameResult) => setGameResults(
-    [
-      ...gameResults
-      , addNewGameResult
-    ]
-  );
+  const addNewGameResult = async (
+    addNewGameResult: GameResult
+  ) => {
+
+    // Save the game to the cloud ia the cloud api..
+    if (emailForCloudApi.length > 0) {
+      await saveGameToCloud(
+        emailForCloudApi
+        , "tca-catan-25s"
+        , addNewGameResult.end
+        , addNewGameResult
+      );
+    }
+      
+      // Optimistacally update the lifted state with the new game result...
+    setGameResults(
+      [
+        ...gameResults
+        , addNewGameResult
+      ]
+    );
+  }
 
   // 
   // Finally, return the JSX, using any of the state and calculated items
@@ -237,11 +265,17 @@ const App = (
                 <button 
                   className="btn"
                   onClick={
-                    async () => await localforage.setItem(
-                      "email"
-                      , emailOnModal
-                    )
-                  }
+                    async () => {
+                      const savedEmail = await localforage.setItem(
+                        "email"
+                        , emailOnModal
+                      );
+
+                      if (savedEmail.length > 0) {
+                        setEmailForCloudApi(savedEmail)
+                      }
+                    }
+                  }  
                 >
                   Save
                 </button>
