@@ -30,7 +30,7 @@ const App = (
   // Order... Ref hooks, state hooks, effect hooks
   // 
   const emailModalRef = useRef<HTMLDialogElement | null>(null);
-  
+
   const [gameResults, setGameResults] = useState<GameResult[]>([]);
 
   const [title, setTitle] = useState(AppTitle);
@@ -210,6 +210,7 @@ const App = (
                 {/* this hidden checkbox controls the state */}
                 <input 
                   type="checkbox"
+                  checked= {darkMode}
                   onClick={
                     async () => {
                       const savedDarkMode = await localforage.setItem("darkMode", !darkMode);
