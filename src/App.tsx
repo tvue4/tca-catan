@@ -7,8 +7,9 @@ import {
 import { AppTitle, Home } from './Home'
 import { Setup } from './Setup'
 import { Play } from './Play'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { GameResult, getGeneralFacts, getLeaderboard, getPreviousPlayers } from './GameResults';
+import localforage from 'localforage';
 
 const dummyGameResults: GameResult[] = [
   {
@@ -46,6 +47,36 @@ const App = (
 
   const [darkMode, setDarkMode] = useState(true);
 
+  useEffect(
+    () => {
+
+      const loadDarkMode = async () => {
+
+        const savedDarkMode = await localforage.getItem<boolean>("darkMode") ?? false;
+
+        if (!ignore) {
+          setDarkMode(savedDarkMode)
+        }
+      };
+
+      // 
+      // Build the ignore-sandwich...
+      // 
+      
+      // Bread on top...
+      let ignore = false;
+
+      loadDarkMode();
+
+      // Bread on bottom...
+      return () => {
+        ignore = true
+      };
+    }
+    , []
+  );
+      
+
   // 
   // Other (not hooks)
   // 
@@ -55,6 +86,11 @@ const App = (
       , addNewGameResult
     ]
   );
+
+  // 
+  // Finally, return the JSX, using any of the state and calculated items
+  // form above...
+  // 
 
   return (
     <>
@@ -77,8 +113,10 @@ const App = (
             <input 
               type="checkbox"
               onClick={
-                () =>
-                  setDarkMode(!darkMode)
+                async () => {
+                  const savedDarkMode = await localforage.setItem("darkMode", !darkMode);
+                  setDarkMode(savedDarkMode)
+                }
               } 
             />
 
