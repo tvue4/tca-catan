@@ -22,28 +22,6 @@ import {
   , loadGamesFromCloud
 } from './tca-cloud-api';
 
-const dummyGameResults: GameResult[] = [
-  {
-      winner: "Hermione"
-      , players: [
-          "Hermione"
-          , "Harry"
-          , "Ron"
-      ]
-      , start: "2025-03-01T18:20:41.576Z"
-      , end: "2025-03-01T18:35:42.576Z"        
-  }
-  , {
-      winner: "Ron"
-      , players: [
-          "Hermione"
-          , "Ron"
-      ]
-      , start: "2025-03-05T18:40:27.576Z"
-      , end: "2025-03-05T18:45:42.576Z"        
-  }
-];
-
 const App = (
 ) => {
   // 
@@ -52,8 +30,8 @@ const App = (
   // Order... Ref hooks, state hooks, effect hooks
   // 
   const emailModalRef = useRef<HTMLDialogElement | null>(null);
-  const [gameResults, setGameResults] = useState<GameResult[]>(dummyGameResults);
-  // const [gameResults, setGameResults] = useState<GameResult[]>([]);
+  
+  const [gameResults, setGameResults] = useState<GameResult[]>([]);
 
   const [title, setTitle] = useState(AppTitle);
 
@@ -126,6 +104,40 @@ const App = (
       };
     }
     , []
+  );
+
+  useEffect(
+    () => {
+
+      const loadGameResults = async () => {
+
+        const savedGameResults = await loadGamesFromCloud(
+          emailForCloudApi
+          , "tca-catan-25s"
+        )
+
+        if (!ignore) {
+          setGameResults(savedGameResults)
+        }
+      };
+
+      // 
+      // Build the ignore-sandwich...
+      // 
+      
+      // Bread on top...
+      let ignore = false;
+
+      if (emailForCloudApi.length > 0) {
+        loadGameResults();
+      }
+
+      // Bread on bottom...
+      return () => {
+        ignore = true
+      };
+    }
+    , [emailForCloudApi]
   );
       
 
