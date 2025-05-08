@@ -86,19 +86,6 @@ export const Play: React.FC<PlayProps> = ({
                 </div>
             </div>
 
-            {/* Display Special Card Holders */}
-            <div className="mt-6">
-                <h3 className="text-lg font-bold">Special Cards at Game End</h3>
-                <p>
-                    <strong>Longest Road:</strong>{" "}
-                    {longestRoadPlayer || "None"}
-                </p>
-                <p>
-                    <strong>Largest Army:</strong>{" "}
-                    {largestArmyPlayer || "None"}
-                </p>
-            </div>
-
             <div className="grid grid-cols-2 gap-2 mt-4">
                 {currentPlayers.map((x) => (
                     <button
