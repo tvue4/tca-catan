@@ -14,6 +14,8 @@ export interface GameResult {
     players: string[];
     start: string;
     end: string;
+    longestRoadHolder: string | null; // Added to track Longest Road holder
+    largestArmyHolder: string | null; // Added to track Largest Army holder
 }
 
 export interface LeaderboardEntry {
@@ -21,14 +23,14 @@ export interface LeaderboardEntry {
     losses: number;
     average: string;
     player: string;
-};
+}
 
 export interface GeneralFacts {
     lastPlayed: string;
     totalGames: number;
     shortestGame: string;
     longestGame: string;
-};
+}
 
 //
 // Exported functions
@@ -82,10 +84,6 @@ export const getGeneralFacts = (results: GameResult[]): GeneralFacts => {
 
     const lastPlayedInMilliseconds = Math.min(...gameEndTimesInMilliseconds);
 
-    // console.log(
-    //     gameEndTimesInMilliseconds
-    // );
-
     // Calcs for shortest/longest...
     const gameDurationsInMilliseconds = results.map(
         x => Date.parse(x.end) - Date.parse(x.start)
@@ -96,6 +94,20 @@ export const getGeneralFacts = (results: GameResult[]): GeneralFacts => {
         , totalGames: results.length
         , shortestGame: formatGameDuration(Math.min(...gameDurationsInMilliseconds))
         , longestGame: formatGameDuration(Math.max(...gameDurationsInMilliseconds))
+    };
+};
+
+export const getSpecialCardHolders = (
+    results: GameResult[]
+): { longestRoad: string | null; largestArmy: string | null } => {
+    if (results.length === 0) {
+        return { longestRoad: null, largestArmy: null };
+    }
+
+    const latestGame = results[results.length - 1]; // Get the most recent game
+    return {
+        longestRoad: latestGame.longestRoadHolder,
+        largestArmy: latestGame.largestArmyHolder
     };
 };
 
@@ -116,10 +128,6 @@ export const getPreviousPlayers = (
 export const getGamesByMonth = (results: GameResult[]): Array<[string, number]> => {
 
     const gameStartMonths = results.map(
-        // x => x.start
-        // x => new Date(x.start)
-        // x => new Date(x.start).getMonth()
-        // x => new Date(x.start).getMonth() + 1
         x => new Date(x.start).toLocaleString(
             'default'
             , {

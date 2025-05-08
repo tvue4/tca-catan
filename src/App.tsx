@@ -13,7 +13,8 @@ import {
   , getGeneralFacts
   , getLeaderboard
   , getPreviousPlayers 
-  , getGamesByMonth
+  , getGamesByMonth,
+  getSpecialCardHolders
 } from './GameResults';
 import localforage from 'localforage';
 
@@ -315,6 +316,10 @@ const App = (
                       gamesByMonthData={
                         getGamesByMonth(gameResults)
                       }
+                      specialCardHolders={{
+                        longestRoad: getSpecialCardHolders(gameResults).longestRoad,
+                        largestArmy: getSpecialCardHolders(gameResults).largestArmy
+                      }}
                     />
                   }
                 />

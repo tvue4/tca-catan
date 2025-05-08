@@ -8,7 +8,8 @@ interface HomeProps {
     leaderboardData: LeaderboardEntry[];
     setTitle: (t: string) => void;
     generalFacts: GeneralFacts;
-    gamesByMonthData: Array<[string, number]>
+    gamesByMonthData: Array<[string, number]>;
+    specialCardHolders: { longestRoad: string | null; largestArmy: string | null };
 }
 
 export const Home: React.FC<HomeProps> = ({
@@ -16,6 +17,7 @@ export const Home: React.FC<HomeProps> = ({
     , setTitle
     , generalFacts
     , gamesByMonthData
+    , specialCardHolders
 }) => {
 
     useEffect(
@@ -163,64 +165,53 @@ export const Home: React.FC<HomeProps> = ({
                     
                 </div>
             </div>
-            <div
-                className="card w-full bg-base-100 card-md shadow-lg mt-4"
-            >
-                <div
-                    className="card-body"
-                >
-                    <h2
-                        className="card-title"
-                    >
-                        Games By Month
-                    </h2>
-                    {
-                        leaderboardData.length > 0
-                            ? (
-                                <div 
-                                className="overflow-x-auto"
-                            >
-                                <table 
-                                    className="table"
-                                >
-                                    <thead>
-                                        <tr>
-                                            <th>
-                                                Month
-                                            </th>
-                                            <th>
-                                                # OF GAMES
-                                            </th>
+
+            {/* Special Card Holders Card */}
+            <div className="card w-full bg-base-100 card-md shadow-lg mt-4">
+                <div className="card-body">
+                    <h2 className="card-title">Special Card Holders</h2>
+                    <div className="overflow-x-auto">
+                        <table className="table">
+                            <tbody>
+                                <tr>
+                                    <td>Longest Road</td>
+                                    <th>{specialCardHolders.longestRoad || "None"}</th>
+                                </tr>
+                                <tr>
+                                    <td>Largest Army</td>
+                                    <th>{specialCardHolders.largestArmy || "None"}</th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div className="card w-full bg-base-100 card-md shadow-lg mt-4">
+                <div className="card-body">
+                    <h2 className="card-title">Games By Month</h2>
+                    {leaderboardData.length > 0 ? (
+                        <div className="overflow-x-auto">
+                            <table className="table">
+                                <thead>
+                                    <tr>
+                                        <th>Month</th>
+                                        <th># OF GAMES</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {gamesByMonthData.map((x) => (
+                                        <tr key={x[0]}>
+                                            <td>{x[0]}</td>
+                                            <td>{x[1]}</td>
                                         </tr>
-                                    </thead>
-                                    <tbody>
-                                        {
-                                            gamesByMonthData.map(
-                                                x => (
-                                                    <tr
-                                                        key={x[0]}
-                                                    >
-                                                    <td>
-                                                        {x[0]}
-                                                    </td>
-                                                    <td>
-                                                        {x[1]}
-                                                    </td>
-                                                </tr>
-                                                )
-                                            )
-                                        }
-                                    </tbody>
-                                </table>
-                            </div>
-                            )
-                            : (
-                                <p>
-                                    Yeah right buddy, play a game to see ! ! ! 
-                                </p>
-                            )
-                    }
-                    
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    ) : (
+                        <p>Yeah right buddy, play a game to see ! ! !</p>
+                    )}
                 </div>
             </div>
         </>
