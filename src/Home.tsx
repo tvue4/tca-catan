@@ -2,7 +2,7 @@ import { useNavigate } from "react-router";
 import { GeneralFacts, LeaderboardEntry } from "./GameResults";
 import { useEffect } from "react";
 
-export const AppTitle = "Catan Companion";
+export const AppTitle = "Catan Companion by tvue4";
 
 interface HomeProps {
     leaderboardData: LeaderboardEntry[];
